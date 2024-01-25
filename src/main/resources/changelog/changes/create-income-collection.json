@@ -1,0 +1,37 @@
+{
+  "databaseChangeLog": [
+    {
+      "changeSet": {
+        "id": "2024-01-25",
+        "author": "Olena",
+        "comment": "Create income collection",
+        "changes": [
+          {
+            "createCollection": {
+              "collectionName": "incomes",
+              "options": {
+                "$rawJson": {
+                  "validator": {
+                    "$jsonSchema": {
+                      "bsonType": "object",
+                      "required": [
+                        "id",
+                        "userId",
+                        "isRegular",
+                        "amount",
+                        "taxes",
+                        "createdAt"
+                      ]
+                    }
+                  },
+                  "validationAction": "error",
+                  "validationLevel": "strict"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
