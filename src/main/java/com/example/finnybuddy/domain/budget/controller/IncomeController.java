@@ -1,15 +1,18 @@
-package com.example.finnybuddy.domain.controller;
+package com.example.finnybuddy.domain.budget.controller;
 
 import com.example.finnybuddy.core.RestEndpoints;
-import com.example.finnybuddy.domain.dto.IncomeRequestDTO;
-import com.example.finnybuddy.domain.dto.IncomeResponseDTO;
-import com.example.finnybuddy.domain.mapper.IncomeMapper;
-import com.example.finnybuddy.domain.service.IncomeService;
+import com.example.finnybuddy.domain.budget.dto.IncomeCalculationDTO;
+import com.example.finnybuddy.domain.budget.dto.IncomeRequestDTO;
+import com.example.finnybuddy.domain.budget.dto.IncomeResponseDTO;
+import com.example.finnybuddy.domain.budget.mapper.IncomeMapper;
+import com.example.finnybuddy.domain.budget.service.IncomeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @CrossOrigin
@@ -51,6 +54,11 @@ public class IncomeController {
     @GetMapping("/{userId}/all")
     public ResponseEntity<List<IncomeResponseDTO>> getAllIncomesByUser(@PathVariable String userId) {
         return ResponseEntity.ok(incomeMapper.toListDto(incomeService.getAllIncomesByUserId(userId)));
+    }
+
+    @GetMapping("/{userId}/calculate-income")
+    public ResponseEntity<IncomeCalculationDTO> calculateIncomesDueDate(@PathVariable String userId, @RequestParam(name = "date", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+        return ResponseEntity.ok(incomeService.calculateIncomeDueDate(userId, date));
     }
 
 }

@@ -1,6 +1,6 @@
-package com.example.finnybuddy.domain.dto;
+package com.example.finnybuddy.domain.budget.dto;
 
-import com.example.finnybuddy.domain.model.enumerations.IncomeType;
+import com.example.finnybuddy.domain.budget.model.enumerations.IncomeType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,6 +17,6 @@ public class IncomeResponseDTO {
     IncomeType type;
     Double amount;
     Double taxes;
-    LocalDateTime currentPaymentDate;
+    LocalDateTime createdAt;
     LocalDate regularPaymentDate;
 }

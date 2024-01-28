@@ -1,6 +1,6 @@
-package com.example.finnybuddy.domain.model;
+package com.example.finnybuddy.domain.budget.model;
 
-import com.example.finnybuddy.domain.model.enumerations.IncomeType;
+import com.example.finnybuddy.domain.budget.model.enumerations.IncomeType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

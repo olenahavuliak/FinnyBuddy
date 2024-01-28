@@ -1,8 +1,9 @@
-package com.example.finnybuddy.domain.mapper;
+package com.example.finnybuddy.domain.budget.mapper;
 
-import com.example.finnybuddy.domain.dto.IncomeRequestDTO;
-import com.example.finnybuddy.domain.dto.IncomeResponseDTO;
-import com.example.finnybuddy.domain.model.Income;
+import com.example.finnybuddy.core.EntityMapper;
+import com.example.finnybuddy.domain.budget.dto.IncomeRequestDTO;
+import com.example.finnybuddy.domain.budget.dto.IncomeResponseDTO;
+import com.example.finnybuddy.domain.budget.model.Income;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Mapper(componentModel = "spring")
-public abstract class IncomeMapper {
+public abstract class IncomeMapper implements EntityMapper<Income, IncomeResponseDTO, IncomeRequestDTO> {
     @Mapping(target = "createdAt", expression = "java(java.time.LocalDateTime.now())")
     public abstract Income toEntity(IncomeRequestDTO dto);
 
@@ -32,7 +33,7 @@ public abstract class IncomeMapper {
         return dtoList;
     }
 
-    public List<Income> toEntityDto(List<IncomeRequestDTO> dtoList) {
+    public List<Income> toListEntity(List<IncomeRequestDTO> dtoList) {
         List<Income> entityList = new ArrayList<>();
         if (dtoList.isEmpty()) {
             return entityList;
