@@ -17,9 +17,7 @@
                       "required": [
                         "id",
                         "userId",
-                        "isRegular",
                         "amount",
-                        "taxes",
                         "createdAt"
                       ]
                     }

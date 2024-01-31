@@ -1,0 +1,66 @@
+{
+  "databaseChangeLog": [
+    {
+      "changeSet": {
+        "id": "2024-01-25",
+        "author": "Olena",
+        "comment": "Create income collection",
+        "changes": [
+          {
+            "createCollection": {
+              "collectionName": "income_settings",
+              "options": {
+                "$rawJson": {
+                  "validator": {
+                    "$jsonSchema": {
+                      "bsonType": "object",
+                      "required": [
+                        "id"
+                      ]
+                    }
+                  },
+                  "validationAction": "error",
+                  "validationLevel": "strict"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "changeSet": {
+        "id": "2024-01-19-2",
+        "author": "Olena",
+        "comment": "Update income-settings collection - set default values",
+        "changes": [
+          {
+            "runCommand": {
+              "command": {
+                "$rawJson": {
+                  "update": "incomes_settings",
+                  "updates": [
+                    {
+                      "q": {},
+                      "u": {
+                        "$set": {
+                          "workingDaysPerMonthCount": 20,
+                          "workingWeeksPerMonthCount": 4,
+                          "workingHoursPerWeekCount": 40,
+                          "nationalHolidaysDaysPerYearCount": 10,
+                          "vacationDaysPerYearCount": 18
+                        }
+                      },
+                      "upsert": false,
+                      "multi": true
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

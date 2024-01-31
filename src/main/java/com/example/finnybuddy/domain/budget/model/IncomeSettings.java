@@ -1,6 +1,5 @@
 package com.example.finnybuddy.domain.budget.model;
 
-import com.example.finnybuddy.domain.budget.model.enumerations.IncomeType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,23 +8,20 @@ import lombok.experimental.FieldNameConstants;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@Document(collection = "incomes")
-@FieldNameConstants
 @AllArgsConstructor
 @NoArgsConstructor
-public class Income {
+@Document(collection = "income-settings")
+@FieldNameConstants
+public class IncomeSettings {
     @Id
     private String id;
-    private String userId;
-    private String notes;
-    private IncomeType type;
-    private Double amount;
-    private Double taxes;
-    private LocalDateTime createdAt;
-    private LocalDate paymentDate;
+    private Integer workingDaysPerMonthCount;
+    private Integer workingWeeksPerMonthCount;
+    private Integer workingHoursPerWeekCount;
+    private Integer nationalHolidaysDaysPerYearCount;
+    private Integer vacationDaysPerYearCount;
 }

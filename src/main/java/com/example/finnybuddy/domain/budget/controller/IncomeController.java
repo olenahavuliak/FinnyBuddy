@@ -4,6 +4,7 @@ import com.example.finnybuddy.core.RestEndpoints;
 import com.example.finnybuddy.domain.budget.dto.IncomeCalculationDTO;
 import com.example.finnybuddy.domain.budget.dto.IncomeRequestDTO;
 import com.example.finnybuddy.domain.budget.dto.IncomeResponseDTO;
+import com.example.finnybuddy.domain.budget.dto.IncomeSettingsDTO;
 import com.example.finnybuddy.domain.budget.mapper.IncomeMapper;
 import com.example.finnybuddy.domain.budget.service.IncomeService;
 import lombok.RequiredArgsConstructor;
@@ -59,6 +60,11 @@ public class IncomeController {
     @GetMapping("/{userId}/calculate-income")
     public ResponseEntity<IncomeCalculationDTO> calculateIncomesDueDate(@PathVariable String userId, @RequestParam(name = "date", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         return ResponseEntity.ok(incomeService.calculateIncomeDueDate(userId, date));
+    }
+
+    @PutMapping("/income-settings")
+    public ResponseEntity<IncomeSettingsDTO> updateIncomeSettings(@RequestBody IncomeSettingsDTO dto){
+        return ResponseEntity.ok(incomeMapper.toDto(incomeService.updateIncomeSettings(incomeMapper.toEntity(dto))));
     }
 
 }

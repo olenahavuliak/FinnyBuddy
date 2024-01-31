@@ -3,14 +3,15 @@ package com.example.finnybuddy.domain.budget.service;
 import com.example.finnybuddy.domain.budget.dto.IncomeCalculationDTO;
 import com.example.finnybuddy.domain.budget.mapper.IncomeMapper;
 import com.example.finnybuddy.domain.budget.model.Income;
+import com.example.finnybuddy.domain.budget.model.IncomeSettings;
 import com.example.finnybuddy.domain.budget.model.enumerations.IncomeType;
 import com.example.finnybuddy.domain.budget.repository.IncomeRepository;
+import com.example.finnybuddy.domain.budget.repository.IncomeSettingsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.time.temporal.ChronoUnit.MONTHS;
 
@@ -19,9 +20,7 @@ import static java.time.temporal.ChronoUnit.MONTHS;
 public class IncomeServiceImpl implements IncomeService {
     private final IncomeRepository incomeRepository;
     private final IncomeMapper incomeMapper;
-
-    //TODO - add logic to handle working days per month
-    private static final Integer WORKING_DAYS_PER_MONTH = 20;
+    private final IncomeSettingsRepository incomeSettingsRepository;
 
     @Override
     public List<Income> getAllIncomes() {
@@ -56,21 +55,28 @@ public class IncomeServiceImpl implements IncomeService {
 
     @Override
     public IncomeCalculationDTO calculateIncomeDueDate(String userId, LocalDate date) {
-        List<Income> regularUserIncomes = getAllIncomesByUserId(userId).stream().filter(Income::getIsRegular).toList();
+        IncomeSettings incomeSettings = incomeSettingsRepository.findFirst();
+        List<Income> regularUserIncomes = getAllIncomesByUserId(userId).stream().filter(x -> !x.getType().equals(IncomeType.IRREGULAR)).toList();
 
         double incomeAmountPerMonth = 0.0;
         incomeAmountPerMonth += getIncomesByType(regularUserIncomes, IncomeType.MONTHLY);
-        incomeAmountPerMonth += getIncomesByType(regularUserIncomes, IncomeType.WEEKLY)*4;
-        incomeAmountPerMonth += getIncomesByType(regularUserIncomes, IncomeType.TWICE_PER_MONTH)*2;
-        incomeAmountPerMonth += getIncomesByType(regularUserIncomes, IncomeType.DAILY)*WORKING_DAYS_PER_MONTH;
+        incomeAmountPerMonth += getIncomesByType(regularUserIncomes, IncomeType.WEEKLY) * incomeSettings.getWorkingWeeksPerMonthCount();
+        incomeAmountPerMonth += getIncomesByType(regularUserIncomes, IncomeType.TWICE_PER_MONTH) * (incomeSettings.getWorkingWeeksPerMonthCount() / 2.0);
+        incomeAmountPerMonth += getIncomesByType(regularUserIncomes, IncomeType.DAILY) * incomeSettings.getWorkingDaysPerMonthCount();
 
         long differenceBetweenDates = MONTHS.between(LocalDate.now(), date);
 
         return new IncomeCalculationDTO(incomeAmountPerMonth * differenceBetweenDates, date);
     }
 
-    private double getIncomesByType(List<Income> incomes, IncomeType type){
-        return incomes.stream().filter(x-> x.getType().equals(type)).mapToDouble(Income::getAmount).sum();
+    @Override
+    public IncomeSettings updateIncomeSettings(IncomeSettings entity) {
+        IncomeSettings incomeSettings = incomeSettingsRepository.findFirst();
+        return incomeSettingsRepository.save(incomeMapper.update(entity, incomeSettings));
+    }
+
+    private double getIncomesByType(List<Income> incomes, IncomeType type) {
+        return incomes.stream().filter(x -> x.getType().equals(type)).mapToDouble(Income::getAmount).sum();
     }
 
 }

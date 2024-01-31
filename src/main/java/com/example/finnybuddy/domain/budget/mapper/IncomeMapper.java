@@ -3,7 +3,9 @@ package com.example.finnybuddy.domain.budget.mapper;
 import com.example.finnybuddy.core.EntityMapper;
 import com.example.finnybuddy.domain.budget.dto.IncomeRequestDTO;
 import com.example.finnybuddy.domain.budget.dto.IncomeResponseDTO;
+import com.example.finnybuddy.domain.budget.dto.IncomeSettingsDTO;
 import com.example.finnybuddy.domain.budget.model.Income;
+import com.example.finnybuddy.domain.budget.model.IncomeSettings;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
@@ -43,5 +45,10 @@ public abstract class IncomeMapper implements EntityMapper<Income, IncomeRespons
         }
         return entityList;
     }
+
+    public abstract IncomeSettingsDTO toDto(IncomeSettings entity);
+    public abstract IncomeSettings toEntity(IncomeSettingsDTO incomeSettingsDTO);
+
+    public abstract IncomeSettings update(IncomeSettings source, @MappingTarget IncomeSettings target);
 
 }

@@ -5,5 +5,5 @@ public enum IncomeType {
     WEEKLY,
     MONTHLY,
     TWICE_PER_MONTH,
-    ONCE
+    IRREGULAR
 }
