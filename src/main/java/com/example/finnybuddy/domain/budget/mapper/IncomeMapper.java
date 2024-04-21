@@ -49,6 +49,7 @@ public abstract class IncomeMapper implements EntityMapper<Income, IncomeRespons
     public abstract IncomeSettingsDTO toDto(IncomeSettings entity);
     public abstract IncomeSettings toEntity(IncomeSettingsDTO incomeSettingsDTO);
 
+    @Mapping(target = "id", ignore = true)
     public abstract IncomeSettings update(IncomeSettings source, @MappingTarget IncomeSettings target);
 
 }

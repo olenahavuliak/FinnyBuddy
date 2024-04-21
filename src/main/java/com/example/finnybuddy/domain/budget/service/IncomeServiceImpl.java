@@ -55,7 +55,7 @@ public class IncomeServiceImpl implements IncomeService {
 
     @Override
     public IncomeCalculationDTO calculateIncomeDueDate(String userId, LocalDate date) {
-        IncomeSettings incomeSettings = incomeSettingsRepository.findFirst();
+        IncomeSettings incomeSettings = incomeSettingsRepository.findAll().stream().findFirst().orElse(null);
         List<Income> regularUserIncomes = getAllIncomesByUserId(userId).stream().filter(x -> !x.getType().equals(IncomeType.IRREGULAR)).toList();
 
         double incomeAmountPerMonth = 0.0;
@@ -71,12 +71,13 @@ public class IncomeServiceImpl implements IncomeService {
 
     @Override
     public IncomeSettings updateIncomeSettings(IncomeSettings entity) {
-        IncomeSettings incomeSettings = incomeSettingsRepository.findFirst();
+        IncomeSettings incomeSettings = incomeSettingsRepository.findAll().stream().findFirst().orElse(null);
         return incomeSettingsRepository.save(incomeMapper.update(entity, incomeSettings));
     }
 
     private double getIncomesByType(List<Income> incomes, IncomeType type) {
         return incomes.stream().filter(x -> x.getType().equals(type)).mapToDouble(Income::getAmount).sum();
     }
+
 
 }

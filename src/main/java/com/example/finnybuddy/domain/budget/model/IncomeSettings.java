@@ -8,13 +8,11 @@ import lombok.experimental.FieldNameConstants;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDateTime;
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "income-settings")
+@Document(collection = "income_settings")
 @FieldNameConstants
 public class IncomeSettings {
     @Id
