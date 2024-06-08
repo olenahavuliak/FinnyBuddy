@@ -23,4 +23,6 @@ public interface IncomeService {
     IncomeCalculationDTO calculateIncomeDueDate(String userId, LocalDate date);
 
     IncomeSettings updateIncomeSettings(IncomeSettings entity);
+
+    IncomeSettings getIncomeSettings();
 }

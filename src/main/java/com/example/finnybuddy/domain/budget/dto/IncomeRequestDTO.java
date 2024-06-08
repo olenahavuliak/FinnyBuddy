@@ -9,11 +9,11 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class IncomeRequestDTO {
-    String userId;
-    Boolean isRegular;
-    String notes;
-    IncomeType type;
-    Double amount;
-    Double taxes;
-    LocalDate regularPaymentDate;
+    private String userId;
+    private Boolean isRegular;
+    private String notes;
+    private IncomeType type;
+    private Double amount;
+    private Double taxes;
+    private LocalDate paymentDate;
 }

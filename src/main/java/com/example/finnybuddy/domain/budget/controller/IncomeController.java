@@ -7,6 +7,7 @@ import com.example.finnybuddy.domain.budget.dto.IncomeResponseDTO;
 import com.example.finnybuddy.domain.budget.dto.IncomeSettingsDTO;
 import com.example.finnybuddy.domain.budget.mapper.IncomeMapper;
 import com.example.finnybuddy.domain.budget.service.IncomeService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -62,8 +63,13 @@ public class IncomeController {
         return ResponseEntity.ok(incomeService.calculateIncomeDueDate(userId, date));
     }
 
+    @GetMapping("/income-settings")
+    public ResponseEntity<IncomeSettingsDTO> getIncomeSettings(){
+        return ResponseEntity.ok(incomeMapper.toDto(incomeService.getIncomeSettings()));
+    }
+
     @PutMapping("/income-settings")
-    public ResponseEntity<IncomeSettingsDTO> updateIncomeSettings(@RequestBody IncomeSettingsDTO dto){
+    public ResponseEntity<IncomeSettingsDTO> updateIncomeSettings(@Valid @RequestBody IncomeSettingsDTO dto){
         return ResponseEntity.ok(incomeMapper.toDto(incomeService.updateIncomeSettings(incomeMapper.toEntity(dto))));
     }
 

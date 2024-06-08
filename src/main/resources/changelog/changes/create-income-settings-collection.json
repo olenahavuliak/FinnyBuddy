@@ -4,7 +4,7 @@
       "changeSet": {
         "id": "2024-01-25",
         "author": "Olena",
-        "comment": "Create income collection",
+        "comment": "Create income settings collection",
         "changes": [
           {
             "createCollection": {
@@ -15,38 +15,18 @@
                     "$jsonSchema": {
                       "bsonType": "object",
                       "required": [
-                        "id"
+                        "id",
+                        "workingDaysPerMonthCount",
+                        "workingWeeksPerMonthCount",
+                        "workingHoursPerWeekCount",
+                        "nationalHolidaysDaysPerYearCount",
+                        "vacationDaysPerYearCount"
                       ]
                     }
                   },
                   "validationAction": "error",
                   "validationLevel": "strict"
                 }
-              }
-            }
-          }
-        ]
-      }
-    },
-    {
-      "changeSet": {
-        "id": "2024-01-25-2",
-        "author": "Olena",
-        "comment": "Insert income-settings collection default values",
-        "changes": [
-          {
-            "insert": {
-              "collectionName": "income_settings",
-              "documents": {
-                "$rawJson": [
-                  {
-                    "workingDaysPerMonthCount": 20,
-                    "workingWeeksPerMonthCount": 4,
-                    "workingHoursPerWeekCount": 40,
-                    "nationalHolidaysDaysPerYearCount": 10,
-                    "vacationDaysPerYearCount": 18
-                  }
-                ]
               }
             }
           }

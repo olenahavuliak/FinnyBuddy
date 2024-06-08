@@ -21,6 +21,7 @@ import java.time.LocalDateTime;
 public class Income {
     @Id
     private String id;
+    private Boolean isRegular;
     private String userId;
     private String notes;
     private IncomeType type;

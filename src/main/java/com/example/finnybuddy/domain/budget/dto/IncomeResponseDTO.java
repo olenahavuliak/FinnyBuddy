@@ -17,6 +17,6 @@ public class IncomeResponseDTO {
     IncomeType type;
     Double amount;
     Double taxes;
+    LocalDate paymentDate;
     LocalDateTime createdAt;
-    LocalDate regularPaymentDate;
 }

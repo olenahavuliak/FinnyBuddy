@@ -15,10 +15,9 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public abstract class IncomeMapper implements EntityMapper<Income, IncomeResponseDTO, IncomeRequestDTO> {
+    @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", expression = "java(java.time.LocalDateTime.now())")
     public abstract Income toEntity(IncomeRequestDTO dto);
-
-    public abstract IncomeResponseDTO toDto(Income entity);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
@@ -47,6 +46,7 @@ public abstract class IncomeMapper implements EntityMapper<Income, IncomeRespons
     }
 
     public abstract IncomeSettingsDTO toDto(IncomeSettings entity);
+    @Mapping(target = "id", ignore = true)
     public abstract IncomeSettings toEntity(IncomeSettingsDTO incomeSettingsDTO);
 
     @Mapping(target = "id", ignore = true)
