@@ -5,12 +5,7 @@ pipeline {
     dockerImage = ""
   }
 
-  agent {
-      docker {
-        image 'docker:19.03.12-dind'
-        args '--privileged' // Required for DinD to work
-      }
-    }
+  agent any
 
   stages {
 
