@@ -3,7 +3,7 @@ package com.example.finnybuddy.domain.budget.service;
 import com.example.finnybuddy.domain.budget.mapper.ExpenseMapper;
 import com.example.finnybuddy.domain.budget.model.Expense;
 import com.example.finnybuddy.domain.budget.repository.ExpenseRepository;
-import com.example.finnybuddy.exceptions.ExceptionMessages;
+import com.example.finnybuddy.core.exceptions.ExceptionMessages;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

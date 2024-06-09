@@ -1,6 +1,6 @@
 package com.example.finnybuddy.domain.budget.controller;
 
-import com.example.finnybuddy.core.RestEndpoints;
+import com.example.finnybuddy.core.constants.RestEndpoints;
 import com.example.finnybuddy.domain.budget.dto.expense.ExpenseRequestDTO;
 import com.example.finnybuddy.domain.budget.dto.expense.ExpenseResponseDTO;
 import com.example.finnybuddy.domain.budget.mapper.ExpenseMapper;

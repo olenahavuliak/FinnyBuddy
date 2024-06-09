@@ -1,4 +1,4 @@
-package com.example.finnybuddy.exceptions;
+package com.example.finnybuddy.core.exceptions;
 
 public class ExceptionMessages {
     private ExceptionMessages(){}

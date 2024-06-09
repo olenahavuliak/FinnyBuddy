@@ -1,4 +1,4 @@
-package com.example.finnybuddy.exceptions;
+package com.example.finnybuddy.core.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;

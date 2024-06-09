@@ -1,6 +1,6 @@
 package com.example.finnybuddy.domain.budget.service;
 
-import com.example.finnybuddy.exceptions.ExceptionMessages;
+import com.example.finnybuddy.core.exceptions.ExceptionMessages;
 import com.example.finnybuddy.domain.budget.constants.IncomeSettingsDefaultValues;
 import com.example.finnybuddy.domain.budget.dto.income.IncomeCalculationDTO;
 import com.example.finnybuddy.domain.budget.mapper.IncomeMapper;

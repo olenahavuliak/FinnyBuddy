@@ -1,0 +1,37 @@
+{
+  "databaseChangeLog": [
+    {
+      "changeSet": {
+        "id": "2024-01-25",
+        "author": "Olena",
+        "comment": "Create expenses collection",
+        "changes": [
+          {
+            "createCollection": {
+              "collectionName": "expenses",
+              "options": {
+                "$rawJson": {
+                  "validator": {
+                    "$jsonSchema": {
+                      "bsonType": "object",
+                      "required": [
+                        "userId",
+                        "name",
+                        "amount",
+                        "paymentDate",
+                        "category",
+                        "recurring"
+                      ]
+                    }
+                  },
+                  "validationAction": "error",
+                  "validationLevel": "strict"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

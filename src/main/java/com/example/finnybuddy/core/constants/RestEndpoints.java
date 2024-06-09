@@ -1,4 +1,4 @@
-package com.example.finnybuddy.core;
+package com.example.finnybuddy.core.constants;
 
 public final class RestEndpoints {
     public static final String BASE_URL = "finnybuddy/api/v1";

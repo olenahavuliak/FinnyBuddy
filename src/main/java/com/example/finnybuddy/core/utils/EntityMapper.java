@@ -1,4 +1,4 @@
-package com.example.finnybuddy.core;
+package com.example.finnybuddy.core.utils;
 
 import org.mapstruct.MappingTarget;
 
