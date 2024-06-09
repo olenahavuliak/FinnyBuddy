@@ -3,13 +3,18 @@ package com.example.finnybuddy.domain.budget.controller;
 import com.example.finnybuddy.core.constants.RestEndpoints;
 import com.example.finnybuddy.domain.budget.dto.expense.ExpenseRequestDTO;
 import com.example.finnybuddy.domain.budget.dto.expense.ExpenseResponseDTO;
+import com.example.finnybuddy.domain.budget.dto.expense.ExpenseSummaryResponseDTO;
 import com.example.finnybuddy.domain.budget.mapper.ExpenseMapper;
+import com.example.finnybuddy.domain.budget.model.enumerations.ExpenseCategory;
 import com.example.finnybuddy.domain.budget.service.ExpenseService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @CrossOrigin
@@ -31,12 +36,12 @@ public class ExpenseController {
     }
 
     @PostMapping
-    ResponseEntity<ExpenseResponseDTO> createExpense(@RequestBody ExpenseRequestDTO dto) {
+    ResponseEntity<ExpenseResponseDTO> createExpense(@Valid @RequestBody ExpenseRequestDTO dto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(expenseMapper.toDto(expenseService.create(expenseMapper.toEntity(dto))));
     }
 
     @PutMapping("/{id}")
-    ResponseEntity<ExpenseResponseDTO> updateExpense(@PathVariable String id, @RequestBody ExpenseRequestDTO dto) {
+    ResponseEntity<ExpenseResponseDTO> updateExpense(@PathVariable String id, @Valid @RequestBody ExpenseRequestDTO dto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(expenseMapper.toDto(expenseService.update(id, expenseMapper.toEntity(dto))));
     }
 
@@ -44,5 +49,18 @@ public class ExpenseController {
     ResponseEntity<Void> deleteExpenseById(@PathVariable String id) {
         expenseService.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/category")
+    ResponseEntity<List<ExpenseResponseDTO>> getByCategory(@RequestParam ExpenseCategory category) {
+        return ResponseEntity.ok(expenseMapper.toListDto(expenseService.getAllExpensesByCategory(category)));
+    }
+
+    @GetMapping("/summary")
+    ResponseEntity<ExpenseSummaryResponseDTO> getExpenseSummary(
+            @RequestParam String userId,
+            @RequestParam(required = false) ExpenseCategory category,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dueDate) {
+        return ResponseEntity.ok(expenseService.getExpenseSummary(userId, category, dueDate));
     }
 }

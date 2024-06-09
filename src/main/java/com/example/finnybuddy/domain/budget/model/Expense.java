@@ -23,19 +23,13 @@ import java.time.LocalDate;
 public class Expense {
     @Id
     private String id;
-    @RequiredField
     private String userId;
-    @RequiredField
     private String name;
-    @RequiredField
     private Double amount;
-    @RequiredField
     private LocalDate paymentDate;
-    @RequiredField
     private ExpenseCategory category;
     private PaymentMethod paymentMethod;
     private String currency;
-    @RequiredField
     private Boolean recurring;
     private String notes;
 }

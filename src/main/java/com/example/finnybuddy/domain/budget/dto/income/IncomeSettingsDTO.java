@@ -1,5 +1,6 @@
 package com.example.finnybuddy.domain.budget.dto.income;
 
+import com.example.finnybuddy.core.validation.annotations.RequiredField;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,14 +10,14 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class IncomeSettingsDTO {
-    @NotNull(message = "Value could not be null")
+    @RequiredField
     private Integer workingDaysPerMonthCount;
-    @NotNull(message = "Value could not be null")
+    @RequiredField
     private Integer workingWeeksPerMonthCount;
-    @NotNull(message = "Value could not be null")
+    @RequiredField
     private Integer workingHoursPerWeekCount;
-    @NotNull(message = "Value could not be null")
+    @RequiredField
     private Integer nationalHolidaysDaysPerYearCount;
-    @NotNull(message = "Value could not be null")
+    @RequiredField
     private Integer vacationDaysPerYearCount;
 }

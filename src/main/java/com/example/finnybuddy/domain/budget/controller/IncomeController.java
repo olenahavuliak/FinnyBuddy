@@ -36,14 +36,14 @@ public class IncomeController {
     }
 
     @PostMapping
-    public ResponseEntity<IncomeResponseDTO> createIncome(@RequestBody IncomeRequestDTO dto) {
+    public ResponseEntity<IncomeResponseDTO> createIncome(@Valid @RequestBody IncomeRequestDTO dto) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(incomeMapper.toDto(incomeService.createIncome(incomeMapper.toEntity(dto))));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<IncomeResponseDTO> updateIncome(@PathVariable String id, @RequestBody IncomeRequestDTO dto) {
+    public ResponseEntity<IncomeResponseDTO> updateIncome(@PathVariable String id, @Valid @RequestBody IncomeRequestDTO dto) {
         return ResponseEntity.ok(incomeMapper.toDto(incomeService.updateIncome(id, incomeMapper.toEntity(dto))));
     }
 

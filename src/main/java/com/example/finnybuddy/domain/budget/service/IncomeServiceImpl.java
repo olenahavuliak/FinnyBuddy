@@ -1,6 +1,7 @@
 package com.example.finnybuddy.domain.budget.service;
 
 import com.example.finnybuddy.core.exceptions.ExceptionMessages;
+import com.example.finnybuddy.core.exceptions.NotFoundException;
 import com.example.finnybuddy.domain.budget.constants.IncomeSettingsDefaultValues;
 import com.example.finnybuddy.domain.budget.dto.income.IncomeCalculationDTO;
 import com.example.finnybuddy.domain.budget.mapper.IncomeMapper;
@@ -81,7 +82,7 @@ public class IncomeServiceImpl implements IncomeService {
 
     @Override
     public IncomeSettings getIncomeSettings() {
-        return incomeSettingsRepository.findAll().stream().findFirst().orElseThrow(() -> new IllegalArgumentException(ExceptionMessages.INCOME_SETTINGS_NOT_FOUND));
+        return incomeSettingsRepository.findAll().stream().findFirst().orElseThrow(() -> new NotFoundException(ExceptionMessages.INCOME_SETTINGS_NOT_FOUND));
     }
 
     private double getIncomesByType(List<Income> incomes, IncomeType type) {
