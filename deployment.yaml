@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: finny-buddy-app
+  name: finny-buddy-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: finny-buddy-app
+      app: finny-buddy-service
   template:
     metadata:
       labels:
-        app: finny-buddy-app
+        app: finny-buddy-service
     spec:
       containers:
-        - name: finny-buddy-app
-          image: olenahavuliak/finny-buddy-app:0.1
+        - name: finny-buddy-service
+          image: olenahavuliak/finny-buddy-service:1.0
           ports:
             - containerPort: 8080
           env:
@@ -25,10 +25,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: finny-buddy-app
+  name: finny-buddy-service
 spec:
   selector:
-    app: finny-buddy-app
+    app: finny-buddy-service
   ports:
     - port: 80
       targetPort: 8080
