@@ -1,4 +1,4 @@
-package com.example.finnybuddy.core;
+package com.example.finnybuddy.core.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
