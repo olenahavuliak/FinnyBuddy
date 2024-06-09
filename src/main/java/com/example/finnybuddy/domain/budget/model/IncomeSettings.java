@@ -15,7 +15,6 @@ import org.springframework.validation.annotation.Validated;
 @NoArgsConstructor
 @Document(collection = "income_settings")
 @FieldNameConstants
-@Validated
 public class IncomeSettings {
     @Id
     private String id;

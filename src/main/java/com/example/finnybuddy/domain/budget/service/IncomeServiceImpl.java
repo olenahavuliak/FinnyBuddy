@@ -2,7 +2,7 @@ package com.example.finnybuddy.domain.budget.service;
 
 import com.example.finnybuddy.exceptions.ExceptionMessages;
 import com.example.finnybuddy.domain.budget.constants.IncomeSettingsDefaultValues;
-import com.example.finnybuddy.domain.budget.dto.IncomeCalculationDTO;
+import com.example.finnybuddy.domain.budget.dto.income.IncomeCalculationDTO;
 import com.example.finnybuddy.domain.budget.mapper.IncomeMapper;
 import com.example.finnybuddy.domain.budget.model.Income;
 import com.example.finnybuddy.domain.budget.model.IncomeSettings;

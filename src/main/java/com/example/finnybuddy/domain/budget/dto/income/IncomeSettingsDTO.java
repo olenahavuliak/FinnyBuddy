@@ -1,4 +1,4 @@
-package com.example.finnybuddy.domain.budget.dto;
+package com.example.finnybuddy.domain.budget.dto.income;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;

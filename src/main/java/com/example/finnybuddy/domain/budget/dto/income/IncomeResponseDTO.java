@@ -1,4 +1,4 @@
-package com.example.finnybuddy.domain.budget.dto;
+package com.example.finnybuddy.domain.budget.dto.income;
 
 import com.example.finnybuddy.domain.budget.model.enumerations.IncomeType;
 import lombok.Getter;

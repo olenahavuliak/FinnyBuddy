@@ -1,9 +1,9 @@
 package com.example.finnybuddy.domain.budget.mapper;
 
 import com.example.finnybuddy.core.EntityMapper;
-import com.example.finnybuddy.domain.budget.dto.IncomeRequestDTO;
-import com.example.finnybuddy.domain.budget.dto.IncomeResponseDTO;
-import com.example.finnybuddy.domain.budget.dto.IncomeSettingsDTO;
+import com.example.finnybuddy.domain.budget.dto.income.IncomeRequestDTO;
+import com.example.finnybuddy.domain.budget.dto.income.IncomeResponseDTO;
+import com.example.finnybuddy.domain.budget.dto.income.IncomeSettingsDTO;
 import com.example.finnybuddy.domain.budget.model.Income;
 import com.example.finnybuddy.domain.budget.model.IncomeSettings;
 import org.mapstruct.Mapper;
