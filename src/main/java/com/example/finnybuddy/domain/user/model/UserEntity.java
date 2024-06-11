@@ -19,7 +19,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document("users")
-public class User implements UserDetails {
+public class UserEntity implements UserDetails {
     @Id
     private Long id;
     private String firstName;

@@ -3,9 +3,9 @@ package com.example.finnybuddy.domain.user.controller;
 import com.example.finnybuddy.core.constants.RestEndpoints;
 import com.example.finnybuddy.core.utils.PageDTO;
 import com.example.finnybuddy.core.utils.PageMapper;
-import com.example.finnybuddy.domain.user.dto.UserDTO;
-import com.example.finnybuddy.domain.user.mapper.UserMapper;
-import com.example.finnybuddy.domain.user.service.UserService;
+import com.example.finnybuddy.domain.user.dto.UserEntityDto;
+import com.example.finnybuddy.domain.user.mapper.UserEntityMapper;
+import com.example.finnybuddy.domain.user.service.UserEntityService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -23,24 +23,24 @@ import java.util.List;
 @RequestMapping(RestEndpoints.USER_BASE_URL)
 @RequiredArgsConstructor
 @SecurityRequirement(name = "Bearer Authentication")
-@Tag(name="User", description = "User API. Contains all the operations that can be performed on a user.")
-public class UserController {
-    private final UserService userService;
-    private final UserMapper userMapper;
+@Tag(name="UserEntity", description = "UserEntity API. Contains all the operations that can be performed on a user.")
+public class UserEntityController {
+    private final UserEntityService userEntityService;
+    private final UserEntityMapper userEntityMapper;
     private final PageMapper pageMapper;
 
     @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
     @Operation(summary = "Fetch list of users")
     @GetMapping("")
-    public ResponseEntity<List<UserDTO>> getAllUsers(){
-        return ResponseEntity.ok(userMapper.toListDTO(userService.getAllUsers()));
+    public ResponseEntity<List<UserEntityDto>> getAllUsers(){
+        return ResponseEntity.ok(userEntityMapper.toListDTO(userEntityService.getAllUsers()));
     }
 
     @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
     @Operation(summary = "Fetch users pageable")
     @GetMapping("/pageable")
-    public ResponseEntity<PageDTO<UserDTO>> getPagesOfUsers(Pageable pageable){
-        return ResponseEntity.ok(pageMapper.toPageDto(userService.getUsersPageable(pageable).map(userMapper::toUserDTO)));
+    public ResponseEntity<PageDTO<UserEntityDto>> getPagesOfUsers(Pageable pageable){
+        return ResponseEntity.ok(pageMapper.toPageDto(userEntityService.getUsersPageable(pageable).map(userEntityMapper::toUserDTO)));
     }
 
 }

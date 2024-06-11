@@ -4,7 +4,7 @@ import com.example.finnybuddy.domain.user.model.Role;
 import lombok.Data;
 
 @Data
-public class UserDTO {
+public class UserEntityDto {
     private Long id;
     private String firstName;
     private String lastName;

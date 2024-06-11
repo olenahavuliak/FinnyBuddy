@@ -1,8 +1,8 @@
 package com.example.finnybuddy.domain.user.service;
 
-import com.example.finnybuddy.domain.user.model.User;
-import com.example.finnybuddy.domain.user.mapper.UserMapper;
-import com.example.finnybuddy.domain.user.repository.UserRepository;
+import com.example.finnybuddy.domain.user.model.UserEntity;
+import com.example.finnybuddy.domain.user.mapper.UserEntityMapper;
+import com.example.finnybuddy.domain.user.repository.UserEntityRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,28 +14,28 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserService {
-    private final UserRepository userRepository;
-    private final UserMapper userMapper;
+public class UserEntityServiceImpl implements UserEntityService {
+    private final UserEntityRepository userEntityRepository;
+    private final UserEntityMapper userEntityMapper;
 
     @Override
     public UserDetailsService userDetailsService() {
         return new UserDetailsService() {
             @Override
             public UserDetails loadUserByUsername(String username) {
-                return userRepository.findByEmail(username);
+                return userEntityRepository.findByEmail(username);
             }
         };
     }
 
     @Override
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    public List<UserEntity> getAllUsers() {
+        return userEntityRepository.findAll();
     }
 
     @Override
-    public Page<User> getUsersPageable(Pageable pageable) {
-        return userRepository.findAll(pageable);
+    public Page<UserEntity> getUsersPageable(Pageable pageable) {
+        return userEntityRepository.findAll(pageable);
     }
 
 }
